@@ -10,6 +10,21 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BANNER_PATH = os.path.join(BASE_DIR, "img", "banner.jpg")
 FOOTER_PATH = os.path.join(BASE_DIR, "img", "footer.jpg")
 
+def fuente_a_base64(ruta_fuente):
+    #Convierte una fuente a base64 para incrustarla en el CSS
+    if not os.path.exists(ruta_fuente):
+        print(f"⚠️ Advertencia: No se encontró {ruta_fuente}")
+        return ""
+    
+    try:
+        # Leer y codificar la fuente
+        with open(ruta_fuente, "rb") as font_file:
+            encoded = base64.b64encode(font_file.read()).decode('utf-8')
+        return encoded
+    except Exception as e:
+        print(f"❌ Error procesando fuente {ruta_fuente}: {e}")
+        return ""
+    
 # Función para convertir imágenes a formato Data URI
 def imagen_a_data_uri(ruta_archivo):
     """Convierte una imagen a Data URI para incrustarla en el HTML"""
@@ -34,6 +49,12 @@ def imagen_a_data_uri(ruta_archivo):
 # Convertir las imágenes
 BANNER_URI = imagen_a_data_uri(BANNER_PATH)
 FOOTER_URI = imagen_a_data_uri(FOOTER_PATH)
+# Convertir las fuentes a Base64
+FUENTE_REGULAR_PATH = os.path.join(BASE_DIR, "fonts", "EncodeSans-Regular.ttf")
+FUENTE_BOLD_PATH = os.path.join(BASE_DIR, "fonts", "EncodeSans-Bold.ttf")
+
+fuente_regular_base64 = fuente_a_base64(FUENTE_REGULAR_PATH)
+fuente_bold_base64 = fuente_a_base64(FUENTE_BOLD_PATH)
 
 # Funciones de formateo de datos
 def formato_moneda(valor):
@@ -83,7 +104,7 @@ def formato_numero(valor):
     except Exception as e:
         print(f"⚠️ Error formateando número: {e} | Valor: {valor}")
         return str(valor)
-    
+
 # Configurar wkhtmltopdf
 config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
 
@@ -111,6 +132,8 @@ for idx, fila in df.iterrows():
         datos = {
             "banner_path": BANNER_URI,
             "footer_path": FOOTER_URI,
+            "fuente_regular": fuente_regular_base64,
+            "fuente_bold": fuente_bold_base64,
             "Memoria_Descriptiva": fila.get("Descripción", "--"),
             "Imagen_Obra": imagen_obra_uri,
             "ID_obra": fila.get("ID obra", "--"),
