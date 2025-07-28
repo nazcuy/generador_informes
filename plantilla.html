@@ -40,22 +40,6 @@
         color: #16a085;
         font-weight: bold;
     }
-    .advertencia { 
-        color: #c0392b; 
-        background-color: #f9ebea;
-        padding: 15px;
-        border-radius: 5px;
-        margin-top: 25px;
-        font-size: 0.9em;
-    }
-    .encabezado {
-        background-color: #3498db;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
     .memoria {
         background-color: #e8f4f8;
         padding: 15px;
@@ -79,6 +63,33 @@
         height: 100px;                /* (Opcional) Si querés fijar la altura del banner */
     }
 
+    .tabla-informe {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        margin-bottom: 1.5em;
+    }
+    
+    .tabla-informe .icono {
+        color: #d9487b;
+        text-align: center;
+        width: 20px;
+    }
+    
+    .tabla-informe .campo-tabla {
+        font-weight: bold;
+        color: #2c3e50;
+        padding: 5px 10px;
+        width: 40%;
+    }
+    
+    .tabla-informe .valor-tabla {
+        color: #16a085;
+        font-weight: bold;
+        padding: 5px 10px;
+        width: 40%;
+    }
+
     .footer {
     width: 100%;
     max-height: 300px;
@@ -93,78 +104,81 @@
         <img src="{{ banner_path }}" alt="Banner">
     </div>
 
-    <div class="encabezado">
-        <h1>Informe de Obra: {{ ID_obra }}</h1>
-    </div>
-
     <div class="memoria">
         <strong>Memoria Descriptiva:</strong> 
         <div class="valor">{{ Memoria_Descriptiva }}</div>
     </div>
 
-    <div class="seccion">
-        <div class="campo">
-            <strong>Municipio:</strong> <span class="valor">{{ Municipio }}</span>
-        </div>
-        <div class="campo">
-            <strong>Localidad:</strong> <span class="valor">{{ Localidad }}</span>
-        </div>
-        <div class="campo">
-            <strong>Modalidad:</strong> <span class="valor">{{ Modalidad }}</span>
-        </div>
-        <div class="campo">
-            <strong>Programa:</strong> <span class="valor">{{ Programa }}</span>
-        </div>
-    </div>
+    <table class="tabla-informe">
+  <tbody>
+    <tr>
+      <td class="icono">&#10095;</td>
+      <td style="width: 40%; padding: 5px 10px; font-weight: bold; color: #2c3e50;">ID: {{ ID_obra }}</td>
+      <td class="icono">&#10095;</td>
+      <td style="width: 40%; padding: 5px 10px; color: #2c3e50; font-weight: bold;">Solicitante Presupuestario: MHyDU</td>
+    </tr>
+    <tr>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; font-weight: bold; color: #2c3e50;">Estado: {{ Estado }}</td>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; color: #2c3e50; font-weight: bold;">Solicitante Financiamiento: {{ Solicitante_Financiamiento }}</td>
+    </tr>
+    <!-- Más filas según datos -->
+    <tr>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; font-weight: bold; color: #2c3e50;">Municipio: {{ Municipio }}</td>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; color: #2c3e50;; font-weight: bold;">Localidad: {{ Localidad }}</td>
+    </tr>
+    <tr>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; font-weight: bold; color: #2c3e50;">Modalidad: {{ Modalidad }}</td>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; color: #2c3e50;; font-weight: bold;">Programa: COMPLETAR</td>
+    </tr>
+    <tr>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; font-weight: bold; color: #2c3e50;">Código Emprendimiento: {{ Cod_emprendimiento }}</td>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; color: #2c3e50;; font-weight: bold;">Código Obra: {{ Cod_obra }}</td>
+    </tr>
+    <tr>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; font-weight: bold; color: #2c3e50;">Monto Convenio: {{ Monto_Convenio }}</td>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; color: #2c3e50;; font-weight: bold;">Fecha UVI: {{ Fecha_UVI }}</td>
+    </tr>
+    <tr>
+      <td class="icono"></td>
+      <td style="padding: 5px 10px; font-weight: bold; color: #2c3e50;"></td>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; color: #2c3e50;; font-weight: bold;">Total UVI: {{ Total_UVI }}</td>
+    </tr>
+    <tr>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; font-weight: bold; color: #2c3e50;">Expediente GDEBA: {{ Exp_GDEBA }}</td>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; color: #2c3e50;; font-weight: bold;">Avance Físico: {{ Avance_físico }}</td>
+    </tr>
+    <tr>
+      <td class="icono"></td>
+      <td style="padding: 5px 10px; font-weight: bold; color: #2c3e50;"></td>
+      <td class="icono"></td>
+      <td style="padding: 5px 10px; color: #2c3e50;; font-weight: bold;"></td>
+    </tr>
+    <tr>
+      <td class="icono"></td>
+      <td style="padding: 5px 10px; font-weight: bold; color: #2c3e50;"></td>
+      <td class="icono">&#10095;</td>
+      <td style="padding: 5px 10px; color: #2c3e50;; font-weight: bold;">Avance Financiero: {{ Avance_financiero }}</td>
+    </tr>
 
-    <div class="seccion">
-        <div class="campo">
-            <strong>Solicitante Financiamiento:</strong> <span class="valor">{{ Solicitante_Financiamiento }}</span>
-        </div>
-        <div class="campo">
-            <strong>Solicitante Presupuestario:</strong> <span class="valor">{{ Solicitante_Presupuestario }}</span>
-        </div>
-        <div class="campo">
-            <strong>Código Emprendimiento:</strong> <span class="valor">{{ Cod_emprendimiento }}</span>
-        </div>
-        <div class="campo">
-            <strong>Código Obra:</strong> <span class="valor">{{ Cod_obra }}</span>
-        </div>
-    </div>
 
-    <div class="seccion">
-        <div class="campo">
-            <strong>Estado:</strong> <span class="valor">{{ Estado }}</span>
-        </div>
-        <div class="campo">
-            <strong>Avance Físico:</strong> <span class="valor">{{ Avance_físico }}</span>
-        </div>
-        <div class="campo">
-            <strong>Avance Financiero:</strong> <span class="valor">{{ Avance_financiero }}</span>
-        </div>
-        <div class="campo">
-            <strong>Total UVI:</strong> <span class="valor">{{ Total_UVI }}</span>
-        </div>
-        <div class="campo">
-            <strong>Monto Convenio:</strong> <span class="valor">{{ Monto_Convenio }}</span>
-        </div>
-    </div>
-
-    <div class="seccion">
-        <div class="campo">
-            <strong>Expediente GDEBA:</strong> <span class="valor">{{ Exp_GDEBA }}</span>
-        </div>
-        <div class="campo">
-            <strong>Fecha UVI:</strong> <span class="valor">{{ Fecha_UVI }}</span>
-        </div>
-    </div>
+  </tbody>
+</table>
 
     <div class="footer">
         <img src="{{ footer_path }}" alt="Footer" class="footer">
-    </div>
-
-    <div class="advertencia">
-        <strong>Nota:</strong> Los campos marcados con "--" no están disponibles en los datos fuente originales
     </div>
 </body>
 </html>
