@@ -4,8 +4,19 @@
     <meta charset="UTF-8">
     <title>Informe de Obra: {{ ID_obra }}</title>
     <style>
+    @font-face {
+        font-family: 'Encode Sans';
+        src: url('fonts/EncodeSans-Regular.ttf') format('truetype');
+        font-weight: normal;
+    }
+
+    @font-face {
+        font-family: 'Encode Sans';
+        src: url('fonts/EncodeSans-Bold.ttf') format('truetype');
+        font-weight: bold;
+    }
     body { 
-        font-family: Arial, sans-serif; 
+        font-family: 'Encode Sans', sans-serif; 
         padding: 2em; 
         line-height: 1.6;
     }
@@ -20,6 +31,14 @@
         font-weight: bold; 
         padding-bottom: 10px;
         text-align: left;
+    }
+    .imagen-obra {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px auto;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .seccion { 
         margin-bottom: 1.5em; 
@@ -116,58 +135,59 @@
         <strong>Memoria Descriptiva:</strong> 
         <div class="valor">{{ Memoria_Descriptiva }}</div>
     </div>
-
-    <div>
-        <!-- insertar imagen aquí !-->
+        <div>
+        {% if Imagen_Obra %}
+            <img class="imagen-obra" src="{{ Imagen_Obra }}" alt="Imagen de la obra {{ ID_obra }}">
+        {% endif %}
     </div>
     <table class="tabla-informe">
   <tbody>
     <tr>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">ID:</td>
       <td class="valor-tabla">{{ ID_obra }}</td>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Solicitante Presupuestario:</td>
       <td class="valor-tabla">MHyDU</td>
     </tr>
     <tr>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Estado:</td>
       <td class="valor-tabla">{{ Estado }}</td>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Solicitante Financiamiento:</td>
       <td class="valor-tabla">{{ Solicitante_Financiamiento }}</td>
     </tr>
     <!-- Más filas según datos -->
     <tr>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Municipio: {{ Municipio }}</td>
       <td class="valor-tabla">{{ Municipio }}</td>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Localidad: {{ Localidad }}</td>
       <td class="valor-tabla">{{ Localidad }}</td>
     </tr>
     <tr>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Modalidad: {{ Modalidad }}</td>
       <td class="valor-tabla">{{ Modalidad }}</td>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Programa: </td>
       <td class="valor-tabla">COMPLETAR</td>
     </tr>
     <tr>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Código Emprendimiento: {{ Cod_emprendimiento }}</td>
       <td class="valor-tabla">{{ Cod_emprendimiento }}</td>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Código Obra: {{ Cod_obra }}</td>
       <td class="valor-tabla">{{ Cod_obra }}</td>
     </tr>
     <tr>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Monto Convenio: {{ Monto_Convenio }}</td>
       <td class="valor-tabla">{{ Monto_Convenio }}</td>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Fecha UVI: {{ Fecha_UVI }}</td>
       <td class="valor-tabla">{{ Fecha_UVI }}</td>
     </tr>
@@ -175,15 +195,15 @@
       <td class="icono"></td>
       <td class="campo-tabla"></td>
       <td class="valor-tabla"></td>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Total UVI: {{ Total_UVI }}</td>
       <td class="valor-tabla">{{ Total_UVI }}</td>
     </tr>
     <tr>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Expediente GDEBA: {{ Exp_GDEBA }}</td>
       <td class="valor-tabla">{{ Exp_GDEBA }}</td>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Avance Físico: {{ Avance_físico }}</td>
       <td class="valor-tabla">{{ Avance_físico }}</td>
     </tr>
@@ -199,7 +219,7 @@
       <td class="icono"></td>
       <td class="campo-tabla"></td>
       <td class="valor-tabla"></td>
-      <td class="icono">&#10095;</td>
+      <td class="icono">&gt;</td>
       <td class="campo-tabla">Avance Financiero: {{ Avance_financiero }}</td>
       <td class="valor-tabla">{{ Avance_financiero }}</td>
     </tr>

@@ -100,11 +100,19 @@ os.makedirs("informes", exist_ok=True)
 # Generar PDFs
 for idx, fila in df.iterrows():
     try:
+        # Buscar imagen de obra como JPG o PNG y convertir a base64
+        ruta_imagen_obra = os.path.join(BASE_DIR, "imagenes_obras", f"{fila['ID obra']}.jpg")
+        if not os.path.exists(ruta_imagen_obra):
+            ruta_imagen_obra = os.path.join(BASE_DIR, "imagenes_obras", f"{fila['ID obra']}.png")
+
+        imagen_obra_uri = imagen_a_data_uri(ruta_imagen_obra)
+
         # Preparar datos para la plantilla
         datos = {
             "banner_path": BANNER_URI,
             "footer_path": FOOTER_URI,
             "Memoria_Descriptiva": fila.get("Descripción", "--"),
+            "Imagen_Obra": imagen_obra_uri,
             "ID_obra": fila.get("ID obra", "--"),
             "Estado": fila.get("Estado", "--"),
             "Solicitante_Financiamiento": fila.get("Solicitante financiamiento", "--"),
@@ -132,7 +140,10 @@ for idx, fila in df.iterrows():
         nombre_archivo = os.path.join("informes", f"{nombre_base}.pdf")
         
         # Generar PDF
-        pdfkit.from_string(html, nombre_archivo, configuration=config)
+        options = {
+            'enable-local-file-access': None  # necesario para cargar fuentes locales y archivos locales
+        }
+        pdfkit.from_string(html, nombre_archivo, configuration=config, options=options)
         print(f"✅ Generado: {nombre_archivo}")
         
     except Exception as e:
