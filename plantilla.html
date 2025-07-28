@@ -26,12 +26,14 @@
         font-weight: bold; 
         padding-bottom: 10px;
         text-align: left;
+        font-size: 25px;
     }
     .subtitulo { 
         color: #2c3e50;
         font-weight: bold; 
         padding-bottom: 10px;
         text-align: left;
+        font-size: 22px;
     }
     .imagen-obra {
         max-width: 100%;
@@ -63,15 +65,15 @@
         color: #2c3e50;
     }
     .valor {
-        color: #16a085;
+        color: #2c3e50;
         font-weight: bold;
     }
     .memoria {
-        background-color: #e8f4f8;
-        padding: 15px;
-        border-left: 4px solid #3498db;
-        margin-bottom: 20px;
-        font-style: italic;
+        color: #d9487b;
+        font-weight: bold; 
+        padding-bottom: 10px;
+        text-align: left;
+        font-size: 20px;
     }
 
     .banner-container {         /* Contenedor general del banner */
@@ -92,7 +94,7 @@
     .tabla-informe {
         width: 100%;
         border-collapse: collapse;
-        font-family: Arial, sans-serif;
+        font-family: 'Encode Sans', sans-serif;
         margin-bottom: 1.5em;
     }
     
@@ -103,15 +105,16 @@
     }
     
     .tabla-informe .campo-tabla {
-        font-weight: bold;
+        font-weight: normal;
         color: #2c3e50;
         padding: 5px 10px;
         width: 40%;
     }
     
     .tabla-informe .valor-tabla {
-        color: #16a085;
+        color: #2c3e50;
         font-weight: bold;
+        text-align: left;
         padding: 5px 10px;
         width: 40%;
     }
@@ -129,14 +132,15 @@
     <div class="banner-container">
         <img src="{{ banner_path }}" alt="Banner">
     </div>
-    <div class="titulo">COMPLETAMIENTO DE {{ Viviendas}} VIVIENDAS</div>
-    <div class="subtitulo">{{ Municipio }}, {{Localidad}}, {{Barrio}}</div>
-    </div>
-    <div class="memoria">
-        <strong>Memoria Descriptiva:</strong> 
+    <div class="titulo">COMPLETAMIENTO DE {{ Viviendas }} VIVIENDAS</div>
+    <div class="subtitulo">{{ Municipio }}, {{ Localidad }}, {{ Barrio }}</div>
+    <div class="memoria">MEMORIA DESCRIPTIVA
         <div class="valor">{{ Memoria_Descriptiva }}</div>
     </div>
-        <div>
+        <div class="memoria">OBSERVACIONES
+        <div class="valor">{{ Memoria_Descriptiva }}</div>
+    </div>
+    <div>
         {% if Imagen_Obra %}
             <img class="imagen-obra" src="{{ Imagen_Obra }}" alt="Imagen de la obra {{ ID_obra }}">
         {% endif %}
