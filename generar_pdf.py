@@ -164,7 +164,11 @@ for idx, fila in df.iterrows():
         
         # Generar PDF
         options = {
-            'enable-local-file-access': None  # necesario para cargar fuentes locales y archivos locales
+            'enable-local-file-access': None,
+            'margin-top': '3mm',
+            'margin-bottom': '3mm',
+            'margin-left': '3mm',
+            'margin-right': '3mm'
         }
         pdfkit.from_string(html, nombre_archivo, configuration=config, options=options)
         print(f"✅ Generado: {nombre_archivo}")

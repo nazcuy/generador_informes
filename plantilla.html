@@ -18,8 +18,9 @@
     
     body { 
         font-family: 'Encode Sans', sans-serif; 
-        padding: 2em; 
-        line-height: 1.6;
+        padding: 0px;
+        margin: 0px;
+        line-height: 1.2;
     }
     .titulo { 
         color: #d9487b;
@@ -36,12 +37,11 @@
         font-size: 22px;
     }
     .imagen-obra {
-        max-width: 100%;
+        margin: 10px 20px;
+        max-width: 90%;
         height: auto;
         display: block;
-        margin: 20px auto;
         border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .seccion { 
         margin-bottom: 1.5em; 
@@ -59,21 +59,17 @@
     .campo:last-child {
         border-bottom: none;
     }
-    strong { 
-        display: inline-block; 
-        width: 250px; 
-        color: #2c3e50;
-    }
     .valor {
         color: #2c3e50;
-        font-weight: bold;
+        font-weight: normal;
+        font-size: 10px;
     }
     .memoria {
         color: #d9487b;
         font-weight: bold; 
         padding-bottom: 10px;
         text-align: left;
-        font-size: 20px;
+        font-size: 15px;
     }
 
     .banner-container {         /* Contenedor general del banner */
@@ -92,12 +88,20 @@
     }
 
     .tabla-informe {
-        width: 100%;
+        background-color: #e6e5e5;
+        border: none;
+        width: 95%;
+        table-layout: fixed;
         border-collapse: collapse;
         font-family: 'Encode Sans', sans-serif;
-        margin-bottom: 1.5em;
+        margin: 20px;
     }
-    
+    .tabla-informe th,
+    .tabla-informe td {
+        border: none;
+        border-collapse: collapse;
+        max-width: 100px;
+    }
     .tabla-informe .icono {
         color: #d9487b;
         text-align: center;
@@ -105,15 +109,19 @@
     }
     
     .tabla-informe .campo-tabla {
+        width: 28ch;
+        max-width: 28ch;
         font-weight: normal;
+        font-size: 10px;
         color: #2c3e50;
         padding: 5px 10px;
-        width: 40%;
+
     }
     
     .tabla-informe .valor-tabla {
         color: #2c3e50;
         font-weight: bold;
+        font-size: 10px;
         text-align: left;
         padding: 5px 10px;
         width: 40%;
@@ -166,15 +174,15 @@
     <!-- Más filas según datos -->
     <tr>
       <td class="icono">&gt;</td>
-      <td class="campo-tabla">Municipio: {{ Municipio }}</td>
+      <td class="campo-tabla">Municipio:</td>
       <td class="valor-tabla">{{ Municipio }}</td>
       <td class="icono">&gt;</td>
-      <td class="campo-tabla">Localidad: {{ Localidad }}</td>
+      <td class="campo-tabla">Localidad:</td>
       <td class="valor-tabla">{{ Localidad }}</td>
     </tr>
     <tr>
       <td class="icono">&gt;</td>
-      <td class="campo-tabla">Modalidad: {{ Modalidad }}</td>
+      <td class="campo-tabla">Modalidad:</td>
       <td class="valor-tabla">{{ Modalidad }}</td>
       <td class="icono">&gt;</td>
       <td class="campo-tabla">Programa: </td>
@@ -182,18 +190,18 @@
     </tr>
     <tr>
       <td class="icono">&gt;</td>
-      <td class="campo-tabla">Código Emprendimiento: {{ Cod_emprendimiento }}</td>
+      <td class="campo-tabla">Código Emprendimiento:</td>
       <td class="valor-tabla">{{ Cod_emprendimiento }}</td>
       <td class="icono">&gt;</td>
-      <td class="campo-tabla">Código Obra: {{ Cod_obra }}</td>
+      <td class="campo-tabla">Código Obra:</td>
       <td class="valor-tabla">{{ Cod_obra }}</td>
     </tr>
     <tr>
       <td class="icono">&gt;</td>
-      <td class="campo-tabla">Monto Convenio: {{ Monto_Convenio }}</td>
+      <td class="campo-tabla">Monto Convenio:</td>
       <td class="valor-tabla">{{ Monto_Convenio }}</td>
       <td class="icono">&gt;</td>
-      <td class="campo-tabla">Fecha UVI: {{ Fecha_UVI }}</td>
+      <td class="campo-tabla">Fecha UVI:</td>
       <td class="valor-tabla">{{ Fecha_UVI }}</td>
     </tr>
     <tr>
@@ -201,15 +209,15 @@
       <td class="campo-tabla"></td>
       <td class="valor-tabla"></td>
       <td class="icono">&gt;</td>
-      <td class="campo-tabla">Total UVI: {{ Total_UVI }}</td>
+      <td class="campo-tabla">Total UVI:</td>
       <td class="valor-tabla">{{ Total_UVI }}</td>
     </tr>
     <tr>
       <td class="icono">&gt;</td>
-      <td class="campo-tabla">Expediente GDEBA: {{ Exp_GDEBA }}</td>
+      <td class="campo-tabla">Expediente GDEBA:</td>
       <td class="valor-tabla">{{ Exp_GDEBA }}</td>
       <td class="icono">&gt;</td>
-      <td class="campo-tabla">Avance Físico: {{ Avance_físico }}</td>
+      <td class="campo-tabla">Avance Físico:</td>
       <td class="valor-tabla">{{ Avance_físico }}</td>
     </tr>
     <tr>
@@ -225,7 +233,7 @@
       <td class="campo-tabla"></td>
       <td class="valor-tabla"></td>
       <td class="icono">&gt;</td>
-      <td class="campo-tabla">Avance Financiero: {{ Avance_financiero }}</td>
+      <td class="campo-tabla">Avance Financiero:</td>
       <td class="valor-tabla">{{ Avance_financiero }}</td>
     </tr>
 
