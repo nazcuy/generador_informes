@@ -37,7 +37,7 @@
         font-size: 22px;
     }
     .imagen-obra {
-        margin: 10px 10px;
+        margin: 10px 30px;
         max-width: 95%;
         height: auto;
         display: block;
@@ -90,41 +90,46 @@
     .tabla-informe {
         background-color: #e6e5e5;
         border: none;
-        width: 95%;
-        table-layout: fixed;
+        width: 100%;
+        table-layout: auto;
         border-collapse: collapse;
         font-family: 'Encode Sans', sans-serif;
-        margin: 20px;
+
     }
     .tabla-informe th,
     .tabla-informe td {
         border: none;
         border-collapse: collapse;
-        max-width: 100px;
+
+
     }
     .tabla-informe .icono {
+        padding: 10px;
         color: #d9487b;
         text-align: center;
-        width: 20px;
+        font-weight: bold;
+        font-size: 15px;
+        width: 25px;
     }
     
     .tabla-informe .campo-tabla {
-        width: 40ch;
-        max-width: 40ch;
+        width: 30ch;
+        max-width: 30ch;
         font-weight: normal;
-        font-size: 10px;
+        font-size: 15px;
         color: #2c3e50;
-        padding: 5px 10px;
+        padding: 10px;
 
     }
     
     .tabla-informe .valor-tabla {
+        width: 80ch;
+        max-width: 80ch;
         color: #2c3e50;
         font-weight: bold;
-        font-size: 10px;
+        font-size: 15px;
         text-align: left;
-        padding: 5px 10px;
-        width: 40%;
+        padding: 10px;
     }
 
     .footer {
@@ -133,6 +138,21 @@
         object-fit: cover;
         border-radius: 5px;
         margin-top: 15px;
+    }
+    .tabla-sintesis {
+        border-right: #d9487b;
+        padding: auto;
+        text-align: center;
+    }
+
+    .montos-sintesis {
+        border-right: 3px solid #d9487b;
+        padding: 10px;
+    }
+
+    .montos-subtitulo {
+        border-right: 3px solid #d9487b;
+        padding: 10px;        
     }
     </style>
 </head>
@@ -154,93 +174,110 @@
         {% endif %}
     </div>
     <table class="tabla-informe">
-  <tbody>
-    <tr>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">ID:</td>
-      <td class="valor-tabla">{{ ID_obra }}</td>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Solicitante Presupuestario:</td>
-      <td class="valor-tabla">MHyDU</td>
-    </tr>
-    <tr>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Estado:</td>
-      <td class="valor-tabla">{{ Estado }}</td>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Solicitante Financiamiento:</td>
-      <td class="valor-tabla">{{ Solicitante_Financiamiento }}</td>
-    </tr>
-    <!-- Más filas según datos -->
-    <tr>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Municipio:</td>
-      <td class="valor-tabla">{{ Municipio }}</td>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Localidad:</td>
-      <td class="valor-tabla">{{ Localidad }}</td>
-    </tr>
-    <tr>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Modalidad:</td>
-      <td class="valor-tabla">{{ Modalidad }}</td>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Programa: </td>
-      <td class="valor-tabla">COMPLETAR</td>
-    </tr>
-    <tr>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Código Emprendimiento:</td>
-      <td class="valor-tabla">{{ Cod_emprendimiento }}</td>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Código Obra:</td>
-      <td class="valor-tabla">{{ Cod_obra }}</td>
-    </tr>
-    <tr>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Monto Convenio:</td>
-      <td class="valor-tabla">{{ Monto_Convenio }}</td>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Fecha UVI:</td>
-      <td class="valor-tabla">{{ Fecha_UVI }}</td>
-    </tr>
-    <tr>
-      <td class="icono"></td>
-      <td class="campo-tabla"></td>
-      <td class="valor-tabla"></td>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Total UVI:</td>
-      <td class="valor-tabla">{{ Total_UVI }}</td>
-    </tr>
-    <tr>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Expediente GDEBA:</td>
-      <td class="valor-tabla">{{ Exp_GDEBA }}</td>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Avance Físico:</td>
-      <td class="valor-tabla">{{ Avance_físico }}</td>
-    </tr>
-    <tr>
-      <td class="icono"></td>
-      <td class="campo-tabla"></td>
-      <td class="valor-tabla"></td>
-      <td class="icono"></td>
-      <td class="campo-tabla"></td>
-      <td class="valor-tabla"></td>
-    </tr>
-    <tr>
-      <td class="icono"></td>
-      <td class="campo-tabla"></td>
-      <td class="valor-tabla"></td>
-      <td class="icono">&gt;</td>
-      <td class="campo-tabla">Avance Financiero:</td>
-      <td class="valor-tabla">{{ Avance_financiero }}</td>
-    </tr>
+        <tbody>
+            <tr>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">ID:</td>
+            <td class="valor-tabla">{{ ID_obra }}</td>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Solicitante Presupuestario:</td>
+            <td class="valor-tabla">MHyDU</td>
+            </tr>
+            <tr>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Estado:</td>
+            <td class="valor-tabla">{{ Estado }}</td>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Solicitante Financiamiento:</td>
+            <td class="valor-tabla">{{ Solicitante_Financiamiento }}</td>
+            </tr>
+            <!-- Más filas según datos -->
+            <tr>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Municipio:</td>
+            <td class="valor-tabla">{{ Municipio }}</td>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Localidad:</td>
+            <td class="valor-tabla">{{ Localidad }}</td>
+            </tr>
+            <tr>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Modalidad:</td>
+            <td class="valor-tabla">{{ Modalidad }}</td>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Programa: </td>
+            <td class="valor-tabla">COMPLETAR</td>
+            </tr>
+            <tr>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Código Emprendimiento:</td>
+            <td class="valor-tabla">{{ Cod_emprendimiento }}</td>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Código Obra:</td>
+            <td class="valor-tabla">{{ Cod_obra }}</td>
+            </tr>
+            <tr>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Monto Convenio:</td>
+            <td class="valor-tabla">{{ Monto_Convenio }}</td>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Fecha UVI:</td>
+            <td class="valor-tabla">{{ Fecha_UVI }}</td>
+            </tr>
+            <tr>
+            <td class="icono"></td>
+            <td class="campo-tabla"></td>
+            <td class="valor-tabla"></td>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Total UVI:</td>
+            <td class="valor-tabla">{{ Total_UVI }}</td>
+            </tr>
+            <tr>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Expediente GDEBA:</td>
+            <td class="valor-tabla">{{ Exp_GDEBA }}</td>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Avance Físico:</td>
+            <td class="valor-tabla">{{ Avance_físico }}</td>
+            </tr>
+            <tr>
+            <td class="icono"></td>
+            <td class="campo-tabla"></td>
+            <td class="valor-tabla"></td>
+            <td class="icono"></td>
+            <td class="campo-tabla"></td>
+            <td class="valor-tabla"></td>
+            </tr>
+            <tr>
+            <td class="icono"></td>
+            <td class="campo-tabla"></td>
+            <td class="valor-tabla"></td>
+            <td class="icono">&gt;</td>
+            <td class="campo-tabla">Avance Financiero:</td>
+            <td class="valor-tabla">{{ Avance_financiero }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-
-  </tbody>
-</table>
-
+    <div>
+        <div class="memoria">INFORMACIÓN FINANCIERA</div>
+        <table class="tabla-sintesis">
+            <tbody>
+                <tr>
+                    <td class="montos-sintesis">{{ Monto_Actual }}</td>
+                    <td class="montos-sintesis">{{ Monto_Devengado }}</td>
+                    <td class="montos-sintesis">{{ Monto_Pagado }}</td>
+                    <td>{{ Fecha_último_pago }}</td>
+                </tr>
+                <tr>
+                    <td class="montos-subtitulo">MONTO ACTUALIZADO</td>
+                    <td class="montos-subtitulo">MONTO DEVENGADO</td>
+                    <td class="montos-subtitulo">MONTO PAGADO</td>
+                    <td>FECHA ÚLTIMO PAGO</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="footer">
         <img src="{{ footer_path }}" alt="Footer" class="footer">
     </div>
