@@ -167,8 +167,8 @@ for idx, fila in df.iterrows():
             "Localidad": "--",  # Campo no disponible
             "Modalidad": fila.get("Modalidad", "--"),
             "Programa": "Programa COMPLETAR",  # Valor fijo
-            "Cod_emprendimiento": fila.get("Código emprendimiento", "--"),
-            "Cod_obra": fila.get("Código de obra", "--"),
+            "Cod_emprendimiento": formato_numero(fila.get("Código emprendimiento", "--")),
+            "Cod_obra": formato_numero(fila.get("Código de obra", "--")),
             "Monto_Convenio": formato_moneda(fila.get("Monto actualizado (ARS)", "--")),
             "Fecha_UVI": "--",  # Campo no disponible
             "Total_UVI": formato_numero(fila.get("Total UVI", "--")),
@@ -176,9 +176,9 @@ for idx, fila in df.iterrows():
             "Avance_físico": formato_porcentaje(fila.get("% Av. físico", "--")),
             "Avance_financiero": formato_porcentaje(fila.get("% Av. financiero", "--")),
             "Monto_actualizado": formato_moneda_sin_decimales(fila.get("Monto actualizado (ARS)", "--")),
-            "Monto_Devengado": formato_moneda(fila.get("Monto devengado (ARS)", "--")),
-            "Monto_Pagado": formato_moneda(fila.get("Monto pagado (ARS)", "--")),
-            "Fecha_ultimo_pago": fila.get("Fecha último pago", "--"),
+            "Monto_Devengado": formato_moneda(fila.get("Monto devengado (ARS)", "--")), # Campo no disponible
+            "Monto_Pagado": formato_moneda(fila.get("Monto pagado (ARS)", "--")), # Campo no disponible
+            "Fecha_ultimo_pago": fila.get("Fecha último pago", "--"), # Campo no disponible
         }
         
         # Generar HTML
