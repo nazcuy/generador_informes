@@ -101,7 +101,9 @@
     .tabla-informe {
         background-color: #e6e5e5;
         border: none;
-        width: 100%;
+        margin: 10px auto;
+        max-width: 87%;
+        border-radius: 5px;
         table-layout: auto;
         border-collapse: collapse;
         font-family: 'Encode Sans', sans-serif;
@@ -119,7 +121,7 @@
         color: #d9487b;
         text-align: center;
         font-weight: bold;
-        font-size: 15px;
+        font-size: 20px;
         width: 25px;
     }
     
@@ -175,7 +177,7 @@
     .montos-subtitulo {
         border-right: 3px solid #d9487b;
         padding: 10px;
-        font-size: 10px;
+        font-size: 12px;
         border-bottom: none;
         border-top: none;
     }
@@ -299,7 +301,7 @@
                     <td class="montos-sintesis">{{ Monto_actualizado }}</td>
                     <td class="montos-sintesis">{{ Monto_Devengado }}</td>
                     <td class="montos-sintesis">{{ Monto_Pagado }}</td>
-                    <td>{{ Fecha_último_pago }}</td>
+                    <td style="font-size: 1.3em; color: #00b6c9; font-weight: bold; text-align: center;">{{ Fecha_último_pago }}</td>
                 </tr>
                 <tr>
                     <td class="montos-subtitulo">MONTO ACTUALIZADO</td>
