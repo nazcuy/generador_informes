@@ -43,6 +43,11 @@
         display: block;
         border-radius: 5px;
     }
+    .icono-flecha {
+        height: 18px;
+        vertical-align: middle;
+        margin-right: 6px;
+    }
     .seccion { 
         margin-bottom: 1.5em; 
         padding: 15px;
@@ -178,10 +183,14 @@
     </div>
     <div class="titulo">COMPLETAMIENTO DE {{ Viviendas }} VIVIENDAS</div>
     <div class="subtitulo">{{ Municipio }}, {{ Localidad }}, {{ Barrio }}</div>
-    <div class="memoria">MEMORIA DESCRIPTIVA
+    <div class="memoria">
+        <img src="{{ doble_flecha }}" class="icono-flecha" alt=">>">
+        MEMORIA DESCRIPTIVA
         <div class="valor">{{ Memoria_Descriptiva }}</div>
     </div>
-        <div class="memoria">OBSERVACIONES
+    <div class="memoria">
+        <img src="{{ doble_flecha }}" class="icono-flecha" alt=">>">
+        OBSERVACIONES
         <div class="valor">{{ Memoria_Descriptiva }}</div>
     </div>
     <div>
@@ -275,7 +284,10 @@
     </table>
 
     <div>
-        <div class="memoria">INFORMACIÓN FINANCIERA</div>
+        <div class="memoria">
+            <img src="{{ doble_flecha }}" class="icono-flecha" alt=">>">
+            INFORMACIÓN FINANCIERA
+        </div>
         <table class="tabla-sintesis">
             <tbody>
                 <tr>
