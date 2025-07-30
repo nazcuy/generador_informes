@@ -152,6 +152,10 @@ for idx, fila in df.iterrows():
             "Exp_GDEBA": fila.get("Expediente GDEBA", "--"),
             "Avance_físico": formato_porcentaje(fila.get("% Av. físico", "--")),
             "Avance_financiero": formato_porcentaje(fila.get("% Av. financiero", "--")),
+            "Monto_actualizado": formato_moneda(fila.get("Monto actualizado (ARS)", "--")),
+            "Monto_Devengado": formato_moneda(fila.get("Monto devengado (ARS)", "--")),
+            "Monto_Pagado": formato_moneda(fila.get("Monto pagado (ARS)", "--")),
+            "Fecha_ultimo_pago": fila.get("Fecha último pago", "--"),
         }
         
         # Generar HTML

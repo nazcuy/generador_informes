@@ -141,6 +141,9 @@
     }
     .tabla-sintesis {
         border-right: #d9487b;
+        width: 100%;
+        margin: 0;
+        border-collapse: collapse;
         padding: auto;
         text-align: center;
         border-bottom: none;
@@ -150,6 +153,12 @@
         border-right: 3px solid #d9487b;
         padding: 10px;
         border-bottom: none;
+        border-top: none;
+        color: #00b6c9;           /* Color celeste/turquesa */
+        font-weight: bold;        /* Negrita */
+        font-size: 2em;           /* Tamaño grande */
+        text-align: center;       /* Centrado */
+        font-family: 'Encode Sans', 'Roboto', Arial, sans-serif; /* Asegura la fuente */
     }
 
     .montos-subtitulo {
@@ -157,6 +166,7 @@
         padding: 10px;
         font-size: 10px;
         border-bottom: none;
+        border-top: none;
     }
     </style>
 </head>
@@ -195,7 +205,6 @@
             <td class="campo-tabla">Solicitante Financiamiento:</td>
             <td class="valor-tabla">{{ Solicitante_Financiamiento }}</td>
             </tr>
-            <!-- Más filas según datos -->
             <tr>
             <td class="icono">&gt;</td>
             <td class="campo-tabla">Municipio:</td>
@@ -268,7 +277,7 @@
         <table class="tabla-sintesis">
             <tbody>
                 <tr>
-                    <td class="montos-sintesis">{{ Monto_Actual }}</td>
+                    <td class="montos-sintesis">{{ Monto_actualizado }}</td>
                     <td class="montos-sintesis">{{ Monto_Devengado }}</td>
                     <td class="montos-sintesis">{{ Monto_Pagado }}</td>
                     <td>{{ Fecha_último_pago }}</td>
