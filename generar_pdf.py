@@ -186,10 +186,10 @@ for idx, fila in df.iterrows():
         # Generar PDF
         options = {
             'enable-local-file-access': None,
-            'margin-top': '3mm',
-            'margin-bottom': '3mm',
-            'margin-left': '3mm',
-            'margin-right': '3mm'
+            'margin-top': '4mm',
+            'margin-bottom': '4mm',
+            'margin-left': '4mm',
+            'margin-right': '4mm'
         }
         pdfkit.from_string(html, nombre_archivo, configuration=config, options=options)
         print(f"✅ Generado: {nombre_archivo}")
@@ -200,4 +200,4 @@ for idx, fila in df.iterrows():
         with open(f"error_{idx}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-print("🎉 Todos los informes fueron generados.")
+print("🎉 Todo el proceso ha sido finalizado.")
