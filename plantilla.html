@@ -28,6 +28,7 @@
         padding-bottom: 10px;
         text-align: left;
         font-size: 20px;
+        margin-left: 25px;
     }
     .subtitulo { 
         color: #2c3e50;
@@ -35,6 +36,7 @@
         padding-bottom: 10px;
         text-align: left;
         font-size: 20px;
+        margin-left: 25px;
     }
     .imagen-obra {
         margin: 10px auto;
@@ -47,6 +49,7 @@
         height: 18px;
         vertical-align: top;
         margin-right: 6px;
+        margin-left: 25px;
     }
     .seccion { 
         margin-bottom: 1.5em; 
@@ -69,6 +72,7 @@
         font-weight: normal;
         font-size: 12px;
         padding-top: 8px;
+        margin-left: 25px;
     }
     .memoria {
         color: #d9487b;
@@ -77,6 +81,7 @@
         text-align: left;
         font-size: 15px;
         padding-top: 8px;
+        margin-left: 25px;
     }
     .banner-container {         /* Contenedor general del banner */
         width: 100%;            /* Que ocupe todo el ancho disponible */
@@ -180,17 +185,18 @@
     <div class="banner-container">
         <img src="{{ banner_path }}" alt="Banner">
     </div>
-    <div class="titulo">COMPLETAMIENTO DE {{ Viviendas }} VIVIENDAS</div>
-    <div class="subtitulo">{{ Municipio }}, {{ Localidad }}, {{ Barrio }}</div>
-    <div class="memoria">
-        <img src="{{ doble_flecha }}" class="icono-flecha" alt=">>">
-        MEMORIA DESCRIPTIVA
-        <div class="valor">{{ Memoria_Descriptiva }}</div>
-    </div>
-    <div class="memoria"> <!-- OJO QUE EL AVANCE FÍSICO QUE MUESTRA ACÁ ES ERRÓNEO, HAY QUE LEVANTARLO DEL OTRAS CORRESPONDIENTE-->
-        <img src="{{ doble_flecha }}" class="icono-flecha" alt=">>">
-        OBSERVACIONES
-        <div class="valor">Obra paralizada por el Gobierno Nacional con avance físico {{ Avance_físico }}</div> 
+
+        <div class="titulo">COMPLETAMIENTO DE {{ Viviendas }} VIVIENDAS</div>
+        <div class="subtitulo">{{ Municipio }}, {{ Localidad }}, {{ Barrio }}</div>
+        <div class="memoria">
+            <img src="{{ doble_flecha }}" class="icono-flecha" alt=">>">
+            MEMORIA DESCRIPTIVA
+            <div class="valor">{{ Memoria_Descriptiva }}</div>
+        </div>
+        <div class="memoria">
+            <img src="{{ doble_flecha }}" class="icono-flecha" alt=">>">
+            OBSERVACIONES
+            <div class="valor">Obra paralizada por el Gobierno Nacional con avance físico {{ Avance_físico }}</div> 
     </div>
     <div>
         {% if Imagen_Obra %}
