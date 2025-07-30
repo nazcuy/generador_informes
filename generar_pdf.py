@@ -121,6 +121,11 @@ def formato_numero(valor):
         print(f"⚠️ Error formateando número: {e} | Valor: {valor}")
         return str(valor)
 
+def chunk_text(text, size=20):
+    if not text:
+        return ""
+    return "<br>".join(text[i:i+size] for i in range(0, len(text), size))
+
 # Configurar wkhtmltopdf
 config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
 
@@ -129,6 +134,7 @@ df = pd.read_excel("Reporte de obras abreviado.xlsx", engine='openpyxl')
 
 # Configurar Jinja2
 env = Environment(loader=FileSystemLoader('.'))
+env.filters['chunk'] = chunk_text
 template = env.get_template("plantilla.html")
 
 # Crear carpeta de salida
