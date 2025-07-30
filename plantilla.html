@@ -45,7 +45,7 @@
     }
     .icono-flecha {
         height: 18px;
-        vertical-align: middle;
+        vertical-align: top;
         margin-right: 6px;
     }
     .seccion { 
@@ -188,10 +188,10 @@
         MEMORIA DESCRIPTIVA
         <div class="valor">{{ Memoria_Descriptiva }}</div>
     </div>
-    <div class="memoria">
+    <div class="memoria"> <!-- OJO QUE EL AVANCE FÍSICO QUE MUESTRA ACÁ ES ERRÓNEO, HAY QUE LEVANTARLO DEL OTRAS CORRESPONDIENTE-->
         <img src="{{ doble_flecha }}" class="icono-flecha" alt=">>">
         OBSERVACIONES
-        <div class="valor">{{ Memoria_Descriptiva }}</div>
+        <div class="valor">Obra paralizada por el Gobierno Nacional con avance físico {{ Avance_físico }}</div> 
     </div>
     <div>
         {% if Imagen_Obra %}
