@@ -120,7 +120,22 @@ def formato_numero(valor):
     except Exception as e:
         print(f"⚠️ Error formateando número: {e} | Valor: {valor}")
         return str(valor)
-
+    
+def formato_numero_sin_decimales(valor):
+    """Devuelve el número sin decimales y sin separadores de miles."""
+    if valor in ["--", "", None] or pd.isna(valor):
+        return "--"
+    try:
+        # Manejar strings con separadores
+        if isinstance(valor, str):
+            valor = valor.replace(".", "").replace(",", ".")
+        valor = float(valor)
+        valor = int(valor)
+        return str(valor)
+    except Exception as e:
+        print(f"⚠️ Error formateando número: {e} | Valor: {valor}")
+        return str(valor)
+    
 def chunk_text(text, size=20):
     if not text:
         return ""
@@ -167,8 +182,8 @@ for idx, fila in df.iterrows():
             "Localidad": "--",  # Campo no disponible
             "Modalidad": fila.get("Modalidad", "--"),
             "Programa": "Programa COMPLETAR",  # Valor fijo
-            "Cod_emprendimiento": fila.get("Código emprendimiento", "--"),
-            "Cod_obra": fila.get("Código de obra", "--"),
+            "Cod_emprendimiento": formato_numero_sin_decimales(fila.get("Código emprendimiento", "--")),
+            "Cod_obra": formato_numero_sin_decimales(fila.get("Código de obra", "--")),
             "Monto_Convenio": formato_moneda(fila.get("Monto actualizado (ARS)", "--")),
             "Fecha_UVI": "--",  # Campo no disponible
             "Total_UVI": formato_numero(fila.get("Total UVI", "--")),
