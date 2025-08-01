@@ -69,7 +69,7 @@ def formato_moneda(valor):
         if isinstance(valor, str):
             valor = valor.replace(".", "").replace(",", ".")
         valor = float(valor)
-        return f"${valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        return f"$ {valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     except Exception as e:
         print(f"⚠️ Error formateando moneda: {e} | Valor: {valor}")
         return str(valor)
@@ -82,7 +82,7 @@ def formato_moneda_sin_decimales(valor):
         if isinstance(valor, str):
             valor = valor.replace(".", "").replace(",", ".")
         valor = float(valor)
-        return f"${valor:,.0f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        return f"$ {valor:,.0f}".replace(",", "X").replace(".", ",").replace("X", ".")
     except Exception as e:
         print(f"⚠️ Error formateando moneda: {e} | Valor: {valor}")
         return str(valor)
@@ -116,7 +116,7 @@ def formato_numero(valor):
         if isinstance(valor, str):
             valor = valor.replace(".", "").replace(",", ".")
         valor = float(valor)
-        return f"{valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        return f"{valor:,.0f}".replace(",", "X").replace(".", ",").replace("X", ".")
     except Exception as e:
         print(f"⚠️ Error formateando número: {e} | Valor: {valor}")
         return str(valor)
@@ -167,8 +167,8 @@ for idx, fila in df.iterrows():
             "Localidad": "--",  # Campo no disponible
             "Modalidad": fila.get("Modalidad", "--"),
             "Programa": "Programa COMPLETAR",  # Valor fijo
-            "Cod_emprendimiento": formato_numero(fila.get("Código emprendimiento", "--")),
-            "Cod_obra": formato_numero(fila.get("Código de obra", "--")),
+            "Cod_emprendimiento": fila.get("Código emprendimiento", "--"),
+            "Cod_obra": fila.get("Código de obra", "--"),
             "Monto_Convenio": formato_moneda(fila.get("Monto actualizado (ARS)", "--")),
             "Fecha_UVI": "--",  # Campo no disponible
             "Total_UVI": formato_numero(fila.get("Total UVI", "--")),
