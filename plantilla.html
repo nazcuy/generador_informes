@@ -184,6 +184,20 @@
         border-bottom: none;
         border-top: none;
     }
+    .page-break { 
+        page-break-before: always; 
+      }
+    .imagenes-pagina2 {
+        padding: 20px;
+        text-align: center; /* Centra las imágenes */
+      }
+    .imagen-extra {
+        display: inline-block;
+        max-width: 48%;
+        height: auto;
+        margin: 1%;
+        border-radius: 5px;
+      }
     </style>
 </head>
 <body>
@@ -317,5 +331,22 @@
     <div class="footer">
         <img src="{{ footer_path }}" alt="Footer" class="footer">
     </div>
+
+    {% if Imagenes_Extra %}
+    <div class="page-break"></div>
+    <div class="banner-container">
+        <img src="{{ banner_path }}" alt="Banner">
+    </div>
+    <div class="imagenes-pagina2">
+        {% for img in Imagenes_Extra %}
+          <img src="{{ img }}" 
+          class="imagen-extra" 
+          alt="Imagen adicional {{ loop.index }}">
+        {% endfor %}
+      </div>
+    <div class="footer">
+        <img src="{{ footer_path }}" alt="Footer" class="footer">
+    </div>
+    {% endif %}
 </body>
 </html>

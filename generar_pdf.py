@@ -164,7 +164,22 @@ for idx, fila in df.iterrows():
             ruta_imagen_obra = os.path.join(BASE_DIR, "imagenes_obras", f"{fila['ID obra']}.png")
 
         imagen_obra_uri = imagen_a_data_uri(ruta_imagen_obra)
-
+        
+        # 1. Buscar todos los archivos que empiecen con ID_obra + "_"
+        carpeta_img = os.path.join(BASE_DIR, "imagenes_obras")
+        imagenes_extra = []
+        for nombre in sorted(os.listdir(carpeta_img)):
+            if nombre.startswith(f"{fila['ID obra']}_"):
+                ruta = os.path.join(carpeta_img, nombre)
+                uri = imagen_a_data_uri(ruta)
+                if uri:
+                    imagenes_extra.append(uri)
+        
+        # 2. Incluir la lista en los datos de la plantilla
+        datos = {
+            # … todos los campos que ya tenías …
+            "Imagenes_Extra": imagenes_extra,
+        }
         # Preparar datos para la plantilla
         datos = {
             "banner_path": BANNER_URI,
@@ -174,6 +189,7 @@ for idx, fila in df.iterrows():
             "fuente_bold": fuente_bold_base64,
             "Memoria_Descriptiva": fila.get("Descripción", "--"),
             "Imagen_Obra": imagen_obra_uri,
+            "Imagenes_Extra": imagenes_extra,
             "ID_obra": fila.get("ID obra", "--"),
             "Estado": fila.get("Estado", "--"),
             "Solicitante_Financiamiento": fila.get("Solicitante financiamiento", "--"),
