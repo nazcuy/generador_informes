@@ -205,7 +205,7 @@ for idx, fila in df.iterrows():
             "Monto_Convenio": formato_moneda(fila.get("monto_convenio", "--")),
             "Fecha_UVI": "--",  # Campo no disponible
             "Total_UVI": formato_numero(fila.get("cantidad_uvis", "--")),
-            "Exp_GDEBA": fila.get("expediente_gdeba", "--"),
+            "Exp_GDEBA": "" if pd.isna(fila.get("expediente_gdeba")) else str(fila.get("expediente_gdeba")),
             "Avance_físico": formato_porcentaje(fila.get("porcentaje_avance_fisico_anterior", "--")),
             "Avance_financiero": formato_porcentaje(fila.get("avance_financiero", "--")),
             "Monto_actualizado": formato_moneda_sin_decimales(fila.get("monto_actualizado", "--")),
@@ -218,7 +218,7 @@ for idx, fila in df.iterrows():
         html = template.render(**datos)
         
         # Crear nombre de archivo seguro
-        nombre_base = f"informe_{fila['ID obra']}"
+        nombre_base = f"informe_{fila['id_obra']}"
         nombre_base = re.sub(r'[\\/*?:"<>|]', "", nombre_base)
         nombre_archivo = os.path.join("informes", f"{nombre_base}.pdf")
         
