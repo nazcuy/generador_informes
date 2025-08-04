@@ -22,6 +22,10 @@
         margin: 0px;
         line-height: 1.1;
     }
+    .footer-img {
+        width: 100%;
+        height: auto;
+    }
     .titulo { 
         color: #d9487b;
         font-weight: bold; 
@@ -187,21 +191,23 @@
     .page-break { 
         page-break-before: always; 
       }
-    .imagenes-pagina2 {
-        padding: 20px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: auto;
-        gap: 10px;
-
-      }
+    .tabla-imagenes {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .tabla-imagenes td {
+        width: 50%;
+        padding: 10px;
+        vertical-align: top;
+    }
     .imagen-extra {
         width: 100%;
         height: auto;
         border-radius: 5px;
-        object-fit: contain;
-
-      }
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        display: block;
+    }
     </style>
 </head>
 <body>
@@ -336,25 +342,38 @@
             </tbody>
         </table>
     </div>
-    <div class="footer">
+    <img class="footer-img" src="{{ footer_base64 }}" alt="Footer">
+    <!-- <div class="footer">
         <img src="{{ footer_path }}" alt="Footer" class="footer">
-    </div>
+    </div> -->
 
     {% if Imagenes_Extra %}
-    <div class="page-break"></div>
-    <div class="banner-container">
-        <img src="{{ banner_path }}" alt="Banner">
-    </div>
-    <div class="imagenes-pagina2">
-        {% for img in Imagenes_Extra %}
-          <img src="{{ img }}" 
-          class="imagen-extra" 
-          alt="Imagen adicional {{ loop.index }}">
-        {% endfor %}
-      </div>
-    <div class="footer">
-        <img src="{{ footer_path }}" alt="Footer" class="footer">
-    </div>
-    {% endif %}
+    {% for grupo in Imagenes_Extra | dividir(4) %}
+        {% if not loop.first %}
+        <div class="page-break"></div>
+        {% endif %}
+    
+        <div class="banner-container">
+            <img src="{{ banner_path }}" alt="Banner">
+        </div>
+    
+        <table class="tabla-imagenes">
+            <tr>
+            {% for img in grupo %}
+                <td>
+                    <img src="{{ img }}" class="imagen-extra" alt="Imagen adicional {{ loop.index }}">
+                </td>
+                {% if loop.index % 2 == 0 %}
+            </tr><tr>
+                {% endif %}
+            {% endfor %}
+            </tr>
+        </table>
+    
+        <!-- <div class="footer">
+            <img src="{{ footer_path }}" alt="Footer" class="footer">
+        </div> -->
+    {% endfor %}
+    {% endif %}    
 </body>
 </html>
