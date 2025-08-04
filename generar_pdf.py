@@ -209,9 +209,9 @@ for idx, fila in df.iterrows():
             "Avance_físico": formato_porcentaje(fila.get("porcentaje_avance_fisico_anterior", "--")),
             "Avance_financiero": formato_porcentaje(fila.get("avance_financiero", "--")),
             "Monto_actualizado": formato_moneda_sin_decimales(fila.get("monto_actualizado", "--")),
-            "Monto_Devengado": formato_moneda(fila.get("Monto devengado (ARS)", "--")), # Campo no disponible
-            "Monto_Pagado": formato_moneda(fila.get("Monto pagado (ARS)", "--")), # Campo no disponible
-            "Fecha_ultimo_pago": fila.get("Fecha último pago", "--"), # Campo no disponible
+            "Monto_Devengado": formato_moneda(fila.get("monto_devengado", "--")),
+            "Monto_Pagado": formato_moneda(fila.get("monto_pagado", "--")),
+            "Fecha_ultimo_pago": fila.get("fecha_ultimo_pago", "--"),
         }
         
         # Generar HTML
