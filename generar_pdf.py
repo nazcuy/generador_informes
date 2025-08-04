@@ -159,9 +159,9 @@ os.makedirs("informes", exist_ok=True)
 for idx, fila in df.iterrows():
     try:
         # Buscar imagen de obra como JPG o PNG y convertir a base64
-        ruta_imagen_obra = os.path.join(BASE_DIR, "imagenes_obras", f"{fila['ID obra']}.jpg")
+        ruta_imagen_obra = os.path.join(BASE_DIR, "imagenes_obras", f"{fila['id_obra']}.jpg")
         if not os.path.exists(ruta_imagen_obra):
-            ruta_imagen_obra = os.path.join(BASE_DIR, "imagenes_obras", f"{fila['ID obra']}.png")
+            ruta_imagen_obra = os.path.join(BASE_DIR, "imagenes_obras", f"{fila['id_obra']}.png")
 
         imagen_obra_uri = imagen_a_data_uri(ruta_imagen_obra)
         
@@ -169,7 +169,7 @@ for idx, fila in df.iterrows():
         carpeta_img = os.path.join(BASE_DIR, "imagenes_obras")
         imagenes_extra = []
         for nombre in sorted(os.listdir(carpeta_img)):
-            if nombre.startswith(f"{fila['ID obra']}_"):
+            if nombre.startswith(f"{fila['id_obra']}_"):
                 ruta = os.path.join(carpeta_img, nombre)
                 uri = imagen_a_data_uri(ruta)
                 if uri:
