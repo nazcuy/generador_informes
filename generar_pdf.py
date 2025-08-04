@@ -145,7 +145,7 @@ def chunk_text(text, size=20):
 config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
 
 # Cargar Excel
-df = pd.read_excel("Reporte de obras abreviado.xlsx", engine='openpyxl')
+df = pd.read_excel("pdf_generator_3000.xlsx", engine='openpyxl')
 
 # Configurar Jinja2
 env = Environment(loader=FileSystemLoader('.'))
@@ -187,26 +187,28 @@ for idx, fila in df.iterrows():
             "doble_flecha": DOBLE_FLECHA_URI,
             "fuente_regular": fuente_regular_base64,
             "fuente_bold": fuente_bold_base64,
-            "Memoria_Descriptiva": fila.get("Descripción", "--"),
+            "Memoria_Descriptiva": fila.get("descripcion", "--"),
             "Imagen_Obra": imagen_obra_uri,
             "Imagenes_Extra": imagenes_extra,
-            "ID_obra": fila.get("ID obra", "--"),
-            "Estado": fila.get("Estado", "--"),
-            "Solicitante_Financiamiento": fila.get("Solicitante financiamiento", "--"),
-            "Solicitante_Presupuestario": fila.get("Solicitante presupuestario", "--"),
-            "Municipio": fila.get("Municipio/s", "--"),
-            "Localidad": "--",  # Campo no disponible
-            "Modalidad": fila.get("Modalidad", "--"),
+            "ID_obra": fila.get("id_obra", "--"),
+            "ID_historico": fila.get("id_historico", "--"),
+            "Viviendas": formato_numero(fila.get("viv_totales", "--")),
+            "Estado": fila.get("estado", "--"),
+            "Solicitante_Financiamiento": fila.get("solicitante_financiero", "--"),
+            "Solicitante_Presupuestario": fila.get("solicitante_presupuestario", "--"),
+            "Municipio": fila.get("municipio", "--"),
+            "Localidad":  fila.get("localidad", "--"),
+            "Modalidad": fila.get("modalidad", "--"),
             "Programa": "Programa COMPLETAR",  # Valor fijo
-            "Cod_emprendimiento": formato_numero_sin_decimales(fila.get("Código emprendimiento", "--")),
-            "Cod_obra": formato_numero_sin_decimales(fila.get("Código de obra", "--")),
-            "Monto_Convenio": formato_moneda(fila.get("Monto actualizado (ARS)", "--")),
+            "Cod_emprendimiento": formato_numero_sin_decimales(fila.get("emprendimiento_incluidos", "--")),
+            "Cod_obra": formato_numero_sin_decimales(fila.get("codigos_incluidos", "--")),
+            "Monto_Convenio": formato_moneda(fila.get("monto_convenio", "--")),
             "Fecha_UVI": "--",  # Campo no disponible
-            "Total_UVI": formato_numero(fila.get("Total UVI", "--")),
-            "Exp_GDEBA": fila.get("Expediente GDEBA", "--"),
-            "Avance_físico": formato_porcentaje(fila.get("% Av. físico", "--")),
-            "Avance_financiero": formato_porcentaje(fila.get("% Av. financiero", "--")),
-            "Monto_actualizado": formato_moneda_sin_decimales(fila.get("Monto actualizado (ARS)", "--")),
+            "Total_UVI": formato_numero(fila.get("cantidad_uvis", "--")),
+            "Exp_GDEBA": fila.get("expediente_gdeba", "--"),
+            "Avance_físico": formato_porcentaje(fila.get("porcentaje_avance_fisico_anterior", "--")),
+            "Avance_financiero": formato_porcentaje(fila.get("avance_financiero", "--")),
+            "Monto_actualizado": formato_moneda_sin_decimales(fila.get("monto_actualizado", "--")),
             "Monto_Devengado": formato_moneda(fila.get("Monto devengado (ARS)", "--")), # Campo no disponible
             "Monto_Pagado": formato_moneda(fila.get("Monto pagado (ARS)", "--")), # Campo no disponible
             "Fecha_ultimo_pago": fila.get("Fecha último pago", "--"), # Campo no disponible

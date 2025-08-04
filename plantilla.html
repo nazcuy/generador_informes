@@ -189,14 +189,18 @@
       }
     .imagenes-pagina2 {
         padding: 20px;
-        text-align: center; /* Centra las imágenes */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: auto;
+        gap: 10px;
+
       }
     .imagen-extra {
-        display: inline-block;
-        max-width: 48%;
+        width: 100%;
         height: auto;
-        margin: 1%;
         border-radius: 5px;
+        object-fit: contain;
+
       }
     </style>
 </head>
