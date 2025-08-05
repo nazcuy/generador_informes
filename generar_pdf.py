@@ -8,10 +8,23 @@ import re
 # Configuración de rutas
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BANNER_PATH = os.path.join(BASE_DIR, "img", "banner.jpg")
+HEADER_HTML_PATH = os.path.join(BASE_DIR, "header.html")
+HEADER_RENDERED_HTML = os.path.join(BASE_DIR, "header_rendered.html")
 FOOTER_PATH = os.path.abspath(os.path.join(BASE_DIR, "img", "footer.jpg"))
 FOOTER_HTML_PATH = os.path.abspath(os.path.join(BASE_DIR, "footer.html"))
 FOOTER_RENDERED_HTML = os.path.abspath(os.path.join(BASE_DIR, "footer_rendered.html"))
 DOBLE_FLECHA_PATH = os.path.join(BASE_DIR, "img", "doble_flecha.jpg")
+
+with open(BANNER_PATH, "rb") as image_file:
+    banner_base64 = base64.b64encode(image_file.read()).decode('utf-8')
+with open(HEADER_HTML_PATH, "r", encoding="utf-8") as f:
+    header_html_content = f.read()
+header_html_rendered = header_html_content.replace(
+    "{{ banner_base64 }}", f"data:image/jpeg;base64,{banner_base64}"  # O usa BANNER_URI si lo tenés sin encabezado MIME
+)
+with open(HEADER_RENDERED_HTML, "w", encoding="utf-8") as f:
+    f.write(header_html_rendered)
+
 
 with open(FOOTER_PATH, "rb") as image_file:
     footer_base64 = base64.b64encode(image_file.read()).decode('utf-8')
@@ -150,6 +163,16 @@ def formato_numero_sin_decimales(valor):
         print(f"⚠️ Error formateando número: {e} | Valor: {valor}")
         return str(valor)
     
+def formato_fecha(fecha):
+    """Formatea fechas a DD/MM/YYYY. Si no hay fecha, devuelve '--'."""
+    if fecha in ["--", "", None] or pd.isna(fecha):
+        return "--"
+    try:
+        return fecha.strftime("%d/%m/%Y")
+    except Exception as e:
+        print(f"⚠️ Error formateando fecha: {e} | Valor: {fecha}")
+        return str(fecha)
+
 def chunk_text(text, size=20):
     if not text:
         return ""
@@ -217,7 +240,7 @@ for idx, fila in df.iterrows():
             "Cod_emprendimiento": formato_numero_sin_decimales(fila.get("emprendimiento_incluidos", "--")),
             "Cod_obra": formato_numero_sin_decimales(fila.get("codigos_incluidos", "--")),
             "Monto_Convenio": formato_moneda(fila.get("monto_convenio", "--")),
-            "Fecha_UVI": "--",  # Campo no disponible
+            "Fecha_UVI": formato_fecha(fila.get("fecha_cotizacion_uvi_convenio")),
             "Total_UVI": formato_numero(fila.get("cantidad_uvis", "--")),
             "Exp_GDEBA": "" if pd.isna(fila.get("expediente_gdeba")) else str(fila.get("expediente_gdeba")),
             "Avance_físico": formato_porcentaje(fila.get("porcentaje_avance_fisico_anterior", "--")),
@@ -225,7 +248,7 @@ for idx, fila in df.iterrows():
             "Monto_actualizado": formato_moneda_sin_decimales(fila.get("monto_actualizado", "--")),
             "Monto_Devengado": formato_moneda(fila.get("monto_devengado", "--")),
             "Monto_Pagado": formato_moneda(fila.get("monto_pagado", "--")),
-            "Fecha_ultimo_pago": fila.get("fecha_ultimo_pago", "--"),
+            "Fecha_ultimo_pago": formato_fecha(fila.get("fecha_ultimo_pago")),
         }
         
         # Generar HTML
@@ -239,11 +262,12 @@ for idx, fila in df.iterrows():
         # Generar PDF
         options = {
             'enable-local-file-access': None,
-            'margin-top': '4mm',
+            'margin-top': '20mm',
             'margin-bottom': '20mm',
             'margin-left': '4mm',
             'margin-right': '4mm',
-            'footer-html': FOOTER_RENDERED_HTML
+            'footer-html': FOOTER_RENDERED_HTML,
+            'header-html': HEADER_RENDERED_HTML
         }
 
         pdfkit.from_string(html, nombre_archivo, configuration=config, options=options)

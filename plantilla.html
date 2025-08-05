@@ -83,21 +83,6 @@
         padding-bottom: 12px;
         margin-left: 25px;
     }
-    .banner-container {         /* Contenedor general del banner */
-        width: 100%;            /* Que ocupe todo el ancho disponible */
-        overflow: hidden;       /* Oculta cualquier contenido que se desborde */
-        margin-bottom: 10px;    /* Espacio inferior entre banner y el título */
-        border-radius: 5px;     /* Bordes redondeados para estética */
-    }
-
-    .banner-container img {           /* Aplica estilos a la imagen dentro del contenedor */
-        width: 100%;                  /* Hace que la imagen ocupe el 100% del ancho */
-        height: auto;                 /* Mantiene la proporción original de la imagen */
-        display: block;               /* Elimina espacios en blanco que agregan las imágenes inline */
-        object-fit: cover;            /* Corta y escala la imagen para cubrir el área sin deformarse */
-        height: 100px;                /* (Opcional) Si querés fijar la altura del banner */
-    }
-
     .tabla-informe {
         background-color: #e6e5e5;
         border: none;
@@ -207,9 +192,6 @@
     </style>
 </head>
 <body>
-    <div class="banner-container">
-        <img src="{{ banner_path }}" alt="Banner">
-    </div>
         <div class="titulo">COMPLETAMIENTO DE {{ Viviendas }} VIVIENDAS</div>
         <div class="subtitulo"><div class="subtitulo">
             {{ Municipio }}
