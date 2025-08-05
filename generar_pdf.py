@@ -262,7 +262,7 @@ for idx, fila in df.iterrows():
         # Generar PDF
         options = {
             'enable-local-file-access': None,
-            'margin-top': '20mm',
+            'margin-top': '30mm',
             'margin-bottom': '20mm',
             'margin-left': '4mm',
             'margin-right': '4mm',
