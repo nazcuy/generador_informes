@@ -9,12 +9,22 @@ import re
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BANNER_PATH = os.path.join(BASE_DIR, "img", "banner.jpg")
 FOOTER_PATH = os.path.abspath(os.path.join(BASE_DIR, "img", "footer.jpg"))
-with open(FOOTER_PATH, "rb") as image_file:
-    footer_base64 = base64.b64encode(image_file.read()).decode('utf-8')
 FOOTER_HTML_PATH = os.path.abspath(os.path.join(BASE_DIR, "footer.html"))
 FOOTER_RENDERED_HTML = os.path.abspath(os.path.join(BASE_DIR, "footer_rendered.html"))
 DOBLE_FLECHA_PATH = os.path.join(BASE_DIR, "img", "doble_flecha.jpg")
 
+with open(FOOTER_PATH, "rb") as image_file:
+    footer_base64 = base64.b64encode(image_file.read()).decode('utf-8')
+# Leer footer.html base y reemplazar {{ footer_base64 }}
+with open(FOOTER_HTML_PATH, "r", encoding="utf-8") as f:
+    footer_html_content = f.read()
+
+footer_html_rendered = footer_html_content.replace(
+    "{{ footer_base64 }}", f"data:image/jpeg;base64,{footer_base64}"
+)
+with open(FOOTER_RENDERED_HTML, "w", encoding="utf-8") as f:
+    f.write(footer_html_rendered)
+   
 def fuente_a_base64(ruta_fuente):
     #Convierte una fuente a base64 para incrustarla en el CSS
     if not os.path.exists(ruta_fuente):
@@ -229,22 +239,12 @@ for idx, fila in df.iterrows():
         # Generar PDF
         options = {
             'enable-local-file-access': None,
-            'margin-top': '10mm',
+            'margin-top': '4mm',
             'margin-bottom': '20mm',
             'margin-left': '4mm',
             'margin-right': '4mm',
             'footer-html': FOOTER_RENDERED_HTML
         }
-        # Cargar y renderizar el footer embebiendo la imagen base64
-        with open(FOOTER_HTML, "r", encoding="utf-8") as f:
-            footer_html_content = f.read()
-
-        footer_html_rendered = footer_html_content.replace(
-            "{{ footer_base64 }}", f"data:image/jpeg;base64,{footer_base64}"
-        )
-
-        with open(FOOTER_RENDERED_HTML, "w", encoding="utf-8") as f:
-            f.write(footer_html_rendered)
 
         pdfkit.from_string(html, nombre_archivo, configuration=config, options=options)
         print(f"✅ Generado: {nombre_archivo}")

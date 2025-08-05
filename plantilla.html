@@ -22,10 +22,6 @@
         margin: 0px;
         line-height: 1.1;
     }
-    .footer-img {
-        width: 100%;
-        height: auto;
-    }
     .titulo { 
         color: #d9487b;
         font-weight: bold; 
@@ -342,10 +338,7 @@
             </tbody>
         </table>
     </div>
-    <img class="footer-img" src="{{ footer_base64 }}" alt="Footer">
-    <!-- <div class="footer">
-        <img src="{{ footer_path }}" alt="Footer" class="footer">
-    </div> -->
+    <!-- <img class="footer-img" src="{{ footer_base64 }}" alt="Footer"> -->
 
     {% if Imagenes_Extra %}
     {% for grupo in Imagenes_Extra | dividir(4) %}
@@ -369,10 +362,6 @@
             {% endfor %}
             </tr>
         </table>
-    
-        <!-- <div class="footer">
-            <img src="{{ footer_path }}" alt="Footer" class="footer">
-        </div> -->
     {% endfor %}
     {% endif %}    
 </body>
