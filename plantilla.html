@@ -325,7 +325,7 @@
     <!-- <img class="footer-img" src="{{ footer_base64 }}" alt="Footer"> -->
 
     {% if Imagenes_Extra %}
-    {% for grupo in Imagenes_Extra | dividir(4) %}
+    {% for grupo in Imagenes_Extra | dividir(6) %}
         {% if not loop.first %}
         <div class="page-break"></div>
         {% endif %}
