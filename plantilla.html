@@ -197,8 +197,8 @@
         <div class="titulo">COMPLETAMIENTO DE {{ Viviendas }} VIVIENDAS</div>
         <div class="subtitulo"><div class="subtitulo">
             {{ Municipio }}
-            {% if Localidad and Localidad != Municipio %}, {{ Localidad }}{% endif %}
-            {% if Barrio %}, {{ Barrio }}{% endif %}.
+            {% if Localidad and Localidad != Municipio %}- {{ Localidad }}{% endif %}
+            {% if Barrio %}- {{ Barrio }}{% endif %}
         </div>
         <div class="memoria">
             <img src="{{ doble_flecha }}" class="icono-flecha" alt=">>">
