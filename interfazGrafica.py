@@ -22,54 +22,54 @@ class GeneradorPDFapp(QMainWindow):
         # Widget central
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
-##########
-        # Layout principal
-        self.layout = QVBoxLayout()
-        self.central_widget.setLayout(self.central_widget)
 
-        # Área de texto para mostrar logs
-        self.log_area = QTextEdit()
-        self.log_area.setReadOnly(True)
-        layout.addWidget(self.log_area)
+        # Layout principal
+        self.layout = QVBoxLayout(self.central_widget)
+        self.layout.setAlignment(Qt.AlignTop)
+        self.layout.setSpacing(15)
+        self.layout.setContentsMargins(20, 20, 20, 20)
+        
+        # Variables para almacenar datos
+        self.excel_path = ""
+        
+        # Llamar a métodos para crear la interfaz
+        self.crear_interfaz()
+        
+    def crear_interfaz(self):
+        # Etiqueta de título
+        self.titulo_label = QLabel("Generador de Informes de Obras COMPLETAR")
+        self.titulo_label.setAlignment(Qt.AlignCenter)
+        self.titulo_label.setStyleSheet("font-size: 24px; font-weight: bold;")
+        self.layout.addWidget(self.titulo_label)
+        
+        # Instrucciones
+        instrucciones = QLabel(
+            "Esta aplicación genera informes PDF a partir de un archivo Excel con datos de obras.\n\n"
+            "Pasos a seguir:\n"
+            "1. Buscar archivo de obras 'pdf_generator_3000' en la carpeta Z\n"
+            "2. Seleccione el archivo usando el botón 'Seleccionar Excel'\n"
+            "3. Haga clic en 'Generar PDFs' para crear los informes\n"
+            "4. Los PDFs se guardarán en la carpeta 'informes'"
+        )
+        instrucciones.setStyleSheet("color: #34495e;")
+        self.layout.addWidget(instrucciones)
+##########
+        # Botón para seleccionar archivo Excel
+        self.seleccionar_excel_btn = QPushButton("Seleccionar Excel")
+        self.seleccionar_excel_btn.clicked.connect(self.seleccionar_archivo_excel)
+        self.layout.addWidget(self.seleccionar_excel_btn)
+
+        # Área de texto para mostrar el contenido del Excel
+        self.text_edit = QTextEdit()
+        self.text_edit.setReadOnly(True)
+        self.layout.addWidget(self.text_edit)
 
         # Barra de progreso
-        self.progress_bar = QProgressBar()
-        layout.addWidget(self.progress_bar)
+        self.progreso_bar = QProgressBar()
+        self.progreso_bar.setRange(0, 100)
+        self.layout.addWidget(self.progreso_bar)
 
-        # Botones
-        self.select_button = QPushButton("Seleccionar Carpeta de Imágenes")
-        self.select_button.clicked.connect(self.seleccionar_carpeta)
-        layout.addWidget(self.select_button)
-
-        self.generate_button = QPushButton("Generar Informe PDF")
-        self.generate_button.clicked.connect(self.generar_informe)
-        layout.addWidget(self.generate_button)
-
-        # Etiqueta para mostrar la carpeta seleccionada
-        self.selected_folder_label = QLabel("Carpeta seleccionada: Ninguna")
-        layout.addWidget(self.selected_folder_label)
-
-    def log(self, message):
-        self.log_area.append(message)
-        self.log_area.verticalScrollBar().setValue(self.log_area.verticalScrollBar().maximum())
-
-    def seleccionar_carpeta(self):
-        folder = QFileDialog.getExistingDirectory(self, "Seleccionar Carpeta de Imágenes", os.getcwd())
-        if folder:
-            self.selected_folder = folder
-            self.selected_folder_label.setText(f"Carpeta seleccionada: {folder}")
-            self.log(f"Carpeta seleccionada: {folder}")
-        else:
-            self.log("Selección de carpeta cancelada.")
-
-    def generar_informe(self):
-        if not hasattr(self, 'selected_folder'):
-            QMessageBox.warning(self, "Advertencia", "Por favor, seleccione una carpeta de imágenes primero.")
-            return
-
-        self.log("Iniciando generación del informe PDF...")
-        
-        # Aquí iría la lógica para generar el informe PDF usando la carpeta seleccionada.
-        # Por ahora, solo simularemos el proceso con un bucle.
-        
-        total_steps = 10  # Simulamos 10 pasos en el proceso
+        # Botón para generar PDF
+        self.generar_pdf_btn = QPushButton("Generar PDF")
+        self.generar_pdf_btn.clicked.connect(self.generar_pdf)
+        self.layout.addWidget(self.generar_pdf_btn)
